@@ -1,0 +1,7 @@
+C:\Users\Fenraz\source\repos\Fenraz.ShiftPayment\Fenraz.ShiftPayment\bin\Debug\Fenraz.ShiftPayment.exe.config
+C:\Users\Fenraz\source\repos\Fenraz.ShiftPayment\Fenraz.ShiftPayment\bin\Debug\Fenraz.ShiftPayment.exe
+C:\Users\Fenraz\source\repos\Fenraz.ShiftPayment\Fenraz.ShiftPayment\bin\Debug\Fenraz.ShiftPayment.pdb
+C:\Users\Fenraz\source\repos\Fenraz.ShiftPayment\Fenraz.ShiftPayment\obj\Debug\Fenraz.ShiftPayment.csprojAssemblyReference.cache
+C:\Users\Fenraz\source\repos\Fenraz.ShiftPayment\Fenraz.ShiftPayment\obj\Debug\Fenraz.ShiftPayment.csproj.CoreCompileInputs.cache
+C:\Users\Fenraz\source\repos\Fenraz.ShiftPayment\Fenraz.ShiftPayment\obj\Debug\Fenraz.ShiftPayment.exe
+C:\Users\Fenraz\source\repos\Fenraz.ShiftPayment\Fenraz.ShiftPayment\obj\Debug\Fenraz.ShiftPayment.pdb
