@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Fenraz.ShiftPayment
 {
     class Worker
     {
         string Name { get; set; }
-        int Shifts { get; set; } // Количество отработанных смен
+        uint Shifts { get; set; } // Количество отработанных смен
         double Payment { get; set; } // Выплата после разделения
 
-        public Worker(string n, int s)
+        public Worker(string n, uint s)
         {
             Name = n;
             Shifts = s;
@@ -37,7 +36,7 @@ namespace Fenraz.ShiftPayment
         }
 
         // Возвратить количество смен (для расчетов)
-        public int ReturnShifts(Worker w)
+        public uint ReturnShifts(Worker w)
         {
             return w.Shifts;
         }
@@ -118,25 +117,58 @@ namespace Fenraz.ShiftPayment
 
             Console.WriteLine("Вы ввели: " + workers + "\n");
 
+            // Добавление общего числа смен в месяце
+            int shifts;
+            Console.WriteLine("Введите общее количество смен в месяце.");
+
+            shifts = Int32.Parse(GetLineNoLetters());
+
+            Console.WriteLine("Вы ввели: " + shifts + "\n");
+
             // Добавление сотрудников
             List<Worker> workersList = new List<Worker>();
 
-            for (int i = 0; i < workers; i++)
+            for (int i = 1; i < workers+1; i++)
             {
                 string n;
-                int s;
+                uint s = 0;
                 Console.WriteLine("Добавление сотрудника #" + i);
 
                 Console.WriteLine("Введите имя сотрудника:");
                 n = Console.ReadLine();
 
-                Console.WriteLine("Введите количество смен, отработанных " +
-                    " сотрудником за месяц: ");
-                s = Int32.Parse(GetLineNoLetters());
+                // Ввод количества смен, отработанных сотрудником
+                while (s == 0 || s > shifts)
+                {
+                    try
+                    {
+                        Console.WriteLine("Введите количество смен, отработанных " +
+                            " сотрудником за месяц: ");
+                        s = UInt32.Parse(GetLineNoLetters());
 
-                workersList.Add(new Worker(n, s));
-
-                Console.WriteLine();
+                        if (s > shifts)
+                        {
+                            Console.WriteLine("Ошибка! Число смен, отработанных сотрудником" +
+                                " превышает общее количество смен.\n");
+                        }
+                        else if (s == 0)
+                        {
+                            Console.WriteLine("Ошибка! Число смен не может быть равно нулю.\n" +
+                                "Если сотрудник в этом месяце не работал, " +
+                                "Перезапустите программу и не добавляйте его в список.\n");
+                        }
+                        else
+                        {
+                            workersList.Add(new Worker(n, s));
+                            Console.WriteLine();
+                            break;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Ошибка! Введенное значение не является числом.\n");
+                    }
+                }
             }
 
             // Вывод списка сотрудников на экран
@@ -154,14 +186,6 @@ namespace Fenraz.ShiftPayment
             double overallSum = GetLineDouble();
 
             Console.WriteLine("Вы ввели: " + overallSum + "\n");
-
-            // Добавление общего числа смен в месяце
-            int shifts;
-            Console.WriteLine("Введите общее количество смен в месяце.");
-
-            shifts = Int32.Parse(GetLineNoLetters());
-
-            Console.WriteLine("Вы ввели: " + shifts + "\n");
 
             //Блок расчета. По Окончанию тестов вынести в отдельный метод
             while(overallSum > 1)
