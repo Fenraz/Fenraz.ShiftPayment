@@ -43,11 +43,31 @@ namespace Fenraz.ShiftPayment
 
         public void AddShiftsAmount(Payment obj)
         {
-            Console.WriteLine("Введите общее количество смен в месяце.");
+            while (obj.Shifts == 0)
+            {
+                try
+                {
+                    Console.WriteLine("Введите общее количество смен в месяце.");
+                    obj.Shifts = uint.Parse(GetLineNoLetters());
 
-            obj.Shifts = UInt32.Parse(GetLineNoLetters());
+                    if (obj.Shifts == 0)
+                    {
+                        Console.WriteLine("Ошибка! Количество смен" +
+                            " не может быть нулевым.\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы ввели: " + obj.Shifts + "\n");
+                    }
 
-            Console.WriteLine("Вы ввели: " + obj.Shifts + "\n");
+                }
+                catch(FormatException)
+                {
+                    Console.WriteLine("Ошибка! Введенное значение не является числом.\n");
+
+                }
+            }
+            
         }
 
         public void AddOverallSum(Payment obj)
