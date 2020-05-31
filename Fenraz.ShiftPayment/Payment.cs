@@ -81,7 +81,7 @@ namespace Fenraz.ShiftPayment
 
         public List<Worker> CreateWrkrsList()
         {
-            // Добавление сотрудников
+            
             List<Worker> workersList = new List<Worker>();
 
             for (int i = 1; i < Workers + 1; i++)
@@ -138,7 +138,7 @@ namespace Fenraz.ShiftPayment
             {
                 w.ShowWorker(w);
             }
-
+            Console.WriteLine();
         }
 
         public void CalculatePayment(List<Worker> list)
@@ -182,6 +182,35 @@ namespace Fenraz.ShiftPayment
             List<Worker> workersList = CreateWrkrsList();
 
             ShowWrkrsList(workersList);
+
+            bool flag = true;
+            do
+            {
+                
+
+                Console.WriteLine("Хотите исправить список?");
+                Console.WriteLine("Y - Да, исправить\n" +
+                    "N - Нет, продолжить");
+
+                var key = Console.ReadKey(true);
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.Y:
+                        workersList = CreateWrkrsList();
+
+                        ShowWrkrsList(workersList);
+                        break;
+                    case ConsoleKey.N:
+                        flag = false;
+                        break;
+
+                }
+                
+
+            } while (flag);
+
+            // Добавление сотрудников
 
             AddOverallSum(this);
 
