@@ -15,10 +15,30 @@ namespace Fenraz.ShiftPayment
 
         public void AddWrkrsAmount(Payment obj)
         {
-            Console.WriteLine("Введите количество рабочих, " +
-                "для которых будет производиться расчет");
-            obj.Workers = uint.Parse(GetLineNoLetters());
-            Console.WriteLine("Вы ввели: " + obj.Workers + "\n");
+            while (obj.Workers == 0)
+            {
+                try
+                {
+                    Console.WriteLine("Введите количество рабочих, " +
+                        "для которых будет производиться расчет");
+                    obj.Workers = uint.Parse(GetLineNoLetters());
+                    if (obj.Workers == 0)
+                    {
+                        Console.WriteLine("Ошибка! Количество сотрудников" +
+                            " не может быть нулевым.\n");
+                    }
+                    else
+                    {
+                        
+                        Console.WriteLine("Вы ввели: " + obj.Workers + "\n");
+                        break;
+                    }
+                }
+                catch(FormatException)
+                {
+                    Console.WriteLine("Ошибка! Введенное значение не является числом.\n");
+                }
+            }
         }
 
         public void AddShiftsAmount(Payment obj)
