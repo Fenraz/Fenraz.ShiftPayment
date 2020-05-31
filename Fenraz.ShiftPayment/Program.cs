@@ -131,6 +131,24 @@ namespace Fenraz.ShiftPayment
             }
         }
 
+        public void MakePayment()
+        {
+            
+
+            AddWrkrsAmount(this);
+
+            AddShiftsAmount(this);
+
+            List<Worker> workersList = CreateWrkrsList();
+
+            ShowWrkrsList(workersList);
+
+            AddOverallSum(this);
+
+            Console.WriteLine("Произвести расчет");
+            CalculatePayment(workersList);
+        }
+
         // Метод, запрещающий ввод каких-либо символов кроме цифр
         public static string GetLineNoLetters()
         {
@@ -195,20 +213,27 @@ namespace Fenraz.ShiftPayment
     {              
         static void Main(string[] args)
         {
-            Payment one = new Payment();
+            //int count = 0;
+            do
+            {
+                Console.WriteLine("Выберите действие:\n");
+                Console.WriteLine("R - создать новый расчет");
+                Console.WriteLine("Q - выход\n");
 
-            one.AddWrkrsAmount(one);
+                var key = Console.ReadKey(true);
 
-            one.AddShiftsAmount(one);
+                switch (key.Key)
+                {
+                    case ConsoleKey.R:
+                        Console.WriteLine("Создание расчета:\n");
+                        Payment payment = new Payment();
+                        payment.MakePayment();
+                        break;
+                    case ConsoleKey.Q:
+                        return;
 
-            List<Worker> workersList = one.CreateWrkrsList();
-
-            one.ShowWrkrsList(workersList);
-
-            one.AddOverallSum(one);
-
-            Console.WriteLine("Произвести расчет");
-            one.CalculatePayment(workersList);
+                }
+            } while (true);
         }
     }
 }
