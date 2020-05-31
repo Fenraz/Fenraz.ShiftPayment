@@ -9,3 +9,5 @@
 /.vs/Fenraz.ShiftPayment/v15/Server/sqlite3
 /.vs/Fenraz.ShiftPayment/v15/.suo
 /.vs/Fenraz.ShiftPayment/v15
+/Fenraz.ShiftPayment/obj/Release
+/Fenraz.ShiftPayment/bin/Release
