@@ -13,6 +13,7 @@ namespace Fenraz.ShiftPayment
 
         double OverallSum { get; set; }
 
+        // Добавление общего количества рабочих
         public void AddWrkrsAmount(Payment obj)
         {
             while (obj.Workers == 0)
@@ -41,6 +42,7 @@ namespace Fenraz.ShiftPayment
             }
         }
 
+        // Добавление общего количества смен
         public void AddShiftsAmount(Payment obj)
         {
             while (obj.Shifts == 0)
@@ -70,6 +72,7 @@ namespace Fenraz.ShiftPayment
             
         }
 
+        // Добавление общей суммы выплат
         public void AddOverallSum(Payment obj)
         {
             Console.WriteLine("Введите общую сумму выплат, полученных " +
@@ -79,6 +82,7 @@ namespace Fenraz.ShiftPayment
             Console.WriteLine("Вы ввели: " + obj.OverallSum + "\n");
         }
 
+        // Создание списка сотрудников
         public List<Worker> CreateWrkrsList()
         {
             
@@ -141,6 +145,7 @@ namespace Fenraz.ShiftPayment
             Console.WriteLine();
         }
 
+        // Выполнение расчета
         public void CalculatePayment(List<Worker> list)
         {
             //Блок расчета. По Окончанию тестов вынести в отдельный метод
@@ -171,6 +176,7 @@ namespace Fenraz.ShiftPayment
             }
         }
 
+        // Последовательное выполнение всех операций расчета
         public void MakePayment()
         {
             
