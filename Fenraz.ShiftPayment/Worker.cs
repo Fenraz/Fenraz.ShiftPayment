@@ -38,5 +38,12 @@ namespace Fenraz.ShiftPayment
         {
             return w.Shifts;
         }
+
+        // Данные о сотруднике (для сохранения в файл)
+        public string WorkerData(Worker w)
+        {
+            string wrkrData = $"Сотрудник: {w.Name}, отработал смен: {w.Shifts}, выплата: {w.Payment:f3}";
+            return wrkrData;
+        }
     }
 }

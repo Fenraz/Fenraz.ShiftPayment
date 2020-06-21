@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 
@@ -196,7 +197,7 @@ namespace Fenraz.ShiftPayment
 
                 Console.WriteLine("Хотите исправить список?");
                 Console.WriteLine("Y - Да, исправить\n" +
-                    "N - Нет, продолжить");
+                    "N - Нет, продолжить\n");
 
                 var key = Console.ReadKey(true);
 
@@ -222,6 +223,44 @@ namespace Fenraz.ShiftPayment
 
             Console.WriteLine("Произвести расчет");
             CalculatePayment(workersList);
+            Console.WriteLine("\n");
+
+            flag = true;
+            do
+            {
+                Console.WriteLine("Хотите сохранить расчет?");
+                Console.WriteLine("Y - Да, сохранить\n" +
+                        "N - Нет");
+
+                var key = Console.ReadKey(true);
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.Y:
+                        SavePayment(workersList);
+                        flag = false;
+                        break;
+                    case ConsoleKey.N:
+                        flag = false;
+                        break;
+                }
+            } while (flag);
+            
+        }
+
+        // Сохранение расчета
+        public void SavePayment(List<Worker> list)
+        {
+            Console.WriteLine("Введите название файла:");
+            string fileName = (Console.ReadLine() + ".txt");            
+
+            using (var sw = new StreamWriter(fileName,true)) 
+            {
+                foreach(Worker w in list)
+                { 
+                    sw.WriteLine(w.WorkerData(w));
+                }
+            }
         }
 
         // Метод, запрещающий ввод каких-либо символов кроме цифр
